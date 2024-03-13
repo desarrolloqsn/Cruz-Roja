@@ -15,7 +15,7 @@ const { Option } = Select;
 const Mapa = () => {
   const datos = useSelector((state) => state.datosFiltrados);
   const mapRef = useRef(null);
-  const [selectedEstados, setSelectedEstados] = useState(["Argentina"]); // Inicialmente selecciona "Distrito Capital"
+  const [selectedEstados, setSelectedEstados] = useState(["Brasil"]); // Inicialmente selecciona "Distrito Capital"
 
 const estados = [...new Set(datos.map((dato) => dato.ESTADO))].filter(estado => estado !== "");
 
@@ -24,7 +24,7 @@ estados.sort((a, b) => a.localeCompare(b));
 const [filteredDatos,setFilteredDatos] = useState(datos);
 useEffect(() => {
   if (!mapRef.current) {
-    const map = L.map("map").setView([-38.4161, -63.6167], 5);
+    const map = L.map("map").setView([-14.235, -51.925], 5);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
