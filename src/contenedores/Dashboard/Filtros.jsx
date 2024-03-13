@@ -16,7 +16,6 @@ import isBetween from 'dayjs/plugin/isBetween';
 import { TreeSelect } from 'antd';
 const { SHOW_PARENT } = TreeSelect;
 
-// Importa la extensión `isBetween`
 dayjs.extend(isBetween);
 
 dayjs.extend(customParseFormat);
@@ -64,7 +63,6 @@ export default function Filtros() {
       const formattedFechaInicio = formatDate(fechaInicio);
       const formattedFechaFin = formatDate(fechaFin);
     
-      // console.log(formattedFechaInicio, formattedFechaFin);
       setFiltros((prevFiltros) => ({
         ...prevFiltros,
         fechaInicio: formattedFechaInicio,
@@ -83,34 +81,28 @@ export default function Filtros() {
       maxDate = dates.reduce((max, date) => (date.isAfter(max) ? date : max));
     }
     
-    // console.log('Fecha mínima:', formatDate(minDate));
-    // console.log('Fecha máxima:', formatDate(maxDate));
-    
+
 
     const categoriasModelos = [
-      {modelo: "Atributos", categorias: ["Autoridad","Capacidad","Cercanía","Coherencia","Deshonestidad","Dinamismo","Falta de Autoridad","Falta de Capacidad","Falta de cercanía","Falta de Responsabilidad","Falta de sensibilidad","Falta de Trayectoria","Honestidad","Incoherencia","Interacción","Responsabilidad","Sensibilidad","Trayectoria" ]},
+      {modelo: "Atributos", categorias: ["Autoridad","Capacidad","Cercanía","Coherencia","Deshonestidad","Dinamismo","Falta de Autoridad","Falta de Capacidad","Falta de cercanía","Falta de Responsabilidad","Falta de sensibilidad","Falta de Trayectoria","Honestidad","Incoherencia", "Inaccion", "Responsabilidad","Sensibilidad","Trayectoria" ]},
       {modelo: "Clima%20social", categorias:["Autoritarismo","Cambio","Calma","Continuidad","Democracia","Desorden","Despolitizacion","División","Estabilidad","Individualismo","Inestabilidad", "Injusticia","Irritación","Justicia","Orden", "Unidad","Pertenencia Social","Politizacion"]},
       { modelo: "Continuidad%20y%20cambio", categorias: ["Cambio", "Continuidad"] },
       {modelo: "Emociones%20B%C3%A1sicas%20(Plutchik)", categorias: ["Alegría", "Previsión", "Rechazo", "Confianza", "Ira", "Miedo", "Sorpresa", "Tristeza"] },
-      {modelo:"Preocupaciones", categorias: ["Ambiente", "Conflictividad", "Corrupción", "Derechos Humanos","Educación", "Economía", "Trabajo","Tránsito y Vialidad", "Salud","Seguridad", "Vivienda","Obra Pública"]},
-      {modelo: "Red%20motivacional%20del%20voto", categorias: ["Voto Blanco", "Voto Clientelar", "Voto Emocional", "Voto Ganador", "Voto Ideológico", "Voto Partidario", "Voto Plebiscitario", "Voto Racional", "Voto de Ira", "Voto del Miedo", "Voto por carisma", "Voto Útil"] },
+      {modelo:"Preocupaciones", categorias: ["Ambiente","Actividad Economica", "Conflictividad", "Corrupción", "Derechos Humanos","Educación","Inflacion","Mercado Financiero", "Trabajo","Tránsito y Vialidad", "Salud","Seguridad", "Vivienda","Obra Pública"]},
+      {modelo: "Red%20motivacional%20del%20voto", categorias: ["Voto Blanco", "Voto Colectivo", "Voto Contextual", "Voto Clientelar","Voto de Plastico","Voto de Fe","Voto Experencial","Voto Circunstancial", "Voto Emocional", "Voto Ganador", "Voto Ideológico", "Voto Partidario", "Voto Plebiscitario", "Voto Racional", "Voto de Ira", "Voto del Miedo", "Voto por carisma", "Voto Útil"] },
       {modelo:"Sentimientos", categorias: ["Agotamiento","Agrado","Amor","Alegría","Altivez","Apatía","Aversión","Calma","Certeza","Compasíon","Desagrado","Deseo","Dolor","Duda","Entusiasmo","Frustración","Humillacion","Odio","Placer","Satisfacción","Tensíon","Valor","Vigor"]},
-      // { modelo: "Voto%20Emocional%20y%20Racional", categorias: ["Voto Emocional", "Voto Racional"] }
         ];
     
-    const categoriasModelosSelector = [
-      {modelo: "Atributos", categorias: ["Autoridad","Capacidad","Cercanía","Coherencia","Deshonestidad","Dinamismo","Falta de Autoridad","Falta de Capacidad","Falta de cercanía","Falta de Responsabilidad","Falta de sensibilidad","Falta de Trayectoria","Honestidad","Incoherencia","Interacción","Responsabilidad","Sensibilidad","Trayectoria" ]},
-      {modelo: "Clima social", categorias:["Autoritarismo","Cambio","Calma","Continuidad","Democracia","Desorden","Despolitizacion","División","Estabilidad","Individualismo","Inestabilidad", "Injusticia","Irritación","Justicia","Orden", "Unidad","Pertenencia Social","Politizacion"]},
-      {modelo:"Continuidad y cambio", categorias: ["Cambio", "Continuidad"] },
-      {modelo:"Emociones Básicas (Plutchik)", categorias: ["Alegría", "Previsión", "Rechazo", "Confianza", "Ira", "Miedo", "Sorpresa", "Tristeza"] },
-      {modelo:"Preocupaciones", categorias: ["Ambiente", "Conflictividad", "Corrupción", "Derechos Humanos","Educación", "Economía", "Trabajo","Tránsito y Vialidad", "Salud","Seguridad", "Vivienda","Obra Pública"]},
-      { modelo: "Red motivacional del voto", categorias: ["Voto Blanco", "Voto Clientelar", "Voto Emocional","voto Ganador", "Voto Ideológico", "Voto Partidario", "Voto Plebiscitario", "Voto Racional", "Voto de Ira", "Voto del Miedo", "Voto por carisma", "Voto Útil"] },
-      {modelo:"Sentimientos", categorias: ["Agotamiento","Agrado","Amor","Alegría","Altivez","Apatía","Aversión","Calma","Certeza","Compasíon","Desagrado","Deseo","Dolor","Duda","Entusiasmo","Frustración","Humillacion","Odio","Placer","Satisfacción","Tensíon","Valor","Vigor"]},
-      // { modelo: "Voto Emocional y Racional", categorias: ["Voto Emocional", "Voto Racional"] }
-      ];
+        const categoriasModelosSelector = [
+          {modelo: "Atributos", categorias: ["Autoridad","Capacidad","Cercanía","Coherencia","Deshonestidad","Dinamismo","Falta de Autoridad","Falta de Capacidad","Falta de cercanía","Falta de Responsabilidad","Falta de sensibilidad","Falta de Trayectoria","Honestidad","Incoherencia", "Inaccion", "Responsabilidad","Sensibilidad","Trayectoria" ]},
+          {modelo: "Clima social", categorias:["Autoritarismo","Cambio","Calma","Continuidad","Democracia","Desorden","Despolitizacion","División","Estabilidad","Individualismo","Inestabilidad", "Injusticia","Irritación","Justicia","Orden", "Unidad","Pertenencia Social","Politizacion"]},
+          { modelo: "Continuidad y cambio", categorias: ["Cambio", "Continuidad"] },
+          {modelo: "Emociones Basicas (Plutchik)", categorias: ["Alegría", "Previsión", "Rechazo", "Confianza", "Ira", "Miedo", "Sorpresa", "Tristeza"] },
+          {modelo:"Preocupaciones", categorias: ["Ambiente","Actividad Economica", "Conflictividad", "Corrupción", "Derechos Humanos","Educación","Inflacion","Mercado Financiero", "Trabajo","Tránsito y Vialidad", "Salud","Seguridad", "Vivienda","Obra Pública"]},
+          {modelo: "Red motivacional del voto", categorias: ["Voto Blanco", "Voto Colectivo", "Voto Contextual", "Voto Clientelar","Voto de Plastico","Voto de Fe","Voto Experencial","Voto Circunstancial", "Voto Emocional", "Voto Ganador", "Voto Ideológico", "Voto Partidario", "Voto Plebiscitario", "Voto Racional", "Voto de Ira", "Voto del Miedo", "Voto por carisma", "Voto Útil"] },
+          {modelo:"Sentimientos", categorias: ["Agotamiento","Agrado","Amor","Alegría","Altivez","Apatía","Aversión","Calma","Certeza","Compasíon","Desagrado","Deseo","Dolor","Duda","Entusiasmo","Frustración","Humillacion","Odio","Placer","Satisfacción","Tensíon","Valor","Vigor"]},
+          ];
 
-
-    // Función recursiva para construir el árbol
 function buildTree(data) {
   const tree = [];
 
@@ -142,21 +134,18 @@ function buildTree(data) {
   return tree;
 }
 
-// Generar el array treeData
 const treeData = buildTree(categoriasModelosSelector);
 
-// console.log(treeData);
 
     const dispatch = useDispatch();
 
-    // console.log("data", datos)
  
     const [filtroCumple, setFiltroCumple] = useState(null);
     const [filtros, setFiltros] = useState({
       serie: [],
       subserie: [],
       palabra: [],
-      sinpalabra: [], // Agregar esta línea para inicializar la propiedad sinpalabra
+      sinpalabra: [], 
       fechaInicio: formatDate(minDate),
       fechaFin: formatDate(maxDate),
       horaInicio: "00:00",
@@ -305,12 +294,7 @@ const treeData = buildTree(categoriasModelosSelector);
               -
             </Button>
             </Tooltip>
-            {/* <Select placeholder="Categoria" className="selectores-dash-eventos" allowClear>
-              <Select.Option value="Texto" allowClear>Texto</Select.Option>
-              <Select.Option value="Autores" allowClear>Autores</Select.Option>
-              <Select.Option value="Hashtags" allowClear>Hashtags</Select.Option>
-              <Select.Option value="Menciones" allowClear>Menciones</Select.Option>
-            </Select> */}
+       
            <Input placeholder="Texto/Autor/Hashtag/Mención" allowClear onBlur={(e) => handleFiltrarEventos(e.target.value)}></Input>
           </div>
         ));
@@ -371,32 +355,17 @@ const treeData = buildTree(categoriasModelosSelector);
         return numero < 10 ? `0${numero}` : numero;
       }
       
-      
-   
-    
-    
-
-
-      
-
-    
-
-
       const handleHoraChange = (times) => {
        
         if(times){
           const [horaInicio, horaFin] = times;
           if (!times || times.length === 0) {
-            // Establecer las times predeterminadas '00:00' y '23:59'
             times = [moment('00:00', 'HH:mm'), moment('23:59', 'HH:mm')];
           }
           
       
-          // Realizar la validación de horaInicio > horaFin
           if (horaInicio > horaFin) {
-            // Mostrar un mensaje de error o realizar la acción correspondiente
-            // console.log("La hora de inicio no puede ser mayor que la hora de fin");
-            // Otra acción...
+       
             return; // Salir de la función para evitar continuar con el flujo
           }
         
@@ -428,6 +397,7 @@ const modeloEncontrado = categoriasModelos.find(item => item.modelo === subUrl);
 // Obtener la lista de categorías del modelo
 const categorias = modeloEncontrado ? modeloEncontrado.categorias : [];
 
+// console.log ('categorias', categorias)
 
 
 const selectProps = {
@@ -541,7 +511,7 @@ const disabledDate = current => {
   }
   return (
     <div>
-    <div className='nombreDashboard'> ARG - Cruz Roja - TW {modeloSinEspacios ? `- ${modeloSinEspacios}` : null}</div>
+    <div className='nombreDashboard'>Dashboard Analisis  {modeloSinEspacios ? `- ${modeloSinEspacios}` : null}</div>
     <div className='contenedor-filtros'>
      <div className='boton-informe'>
      <Tooltip placement="top" title='Generar informe' >

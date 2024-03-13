@@ -47,7 +47,7 @@ export default function GraphHashtags(){
     <div className='grafo-video'>
     
     <Tooltip title="Click para ver el grafo">
-    <a href={`https://qsngrafos.vercel.app/co-ocurrencia/cruz-roja/grafo_co-ocurencia_hashtags-${filtroFecha}.html`} target="_blank">
+    <a href={`https://qsngrafos.vercel.app/co-ocurrencia/39761017/grafo_co-ocurencia_hashtags-${filtroFecha}.html`} target="_blank">
     <div className='video-explicativo cartaGrafo'>
       <img src={imagen} className='imagen-grafo' />
     </div>

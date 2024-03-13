@@ -21,7 +21,6 @@ import imagen from './../../imagenes/grafo_comunidades-2023-06-19-2023-06-19.PNG
 import {IoOpenOutline} from 'react-icons/io5'
 import { Link } from 'react-router-dom';
 import {DownloadOutlined} from '@ant-design/icons';
-import JSZip from 'jszip/dist/jszip.min.js';
 
 
 
@@ -104,24 +103,7 @@ const opciones = fechas
     setDisplay(!display)
   }
   
-  useEffect(() => {
-    window.addEventListener('error', e => {
-        if (e.message === 'ResizeObserver loop limit exceeded') {
-            const resizeObserverErrDiv = document.getElementById(
-                'webpack-dev-server-client-overlay-div'
-            );
-            const resizeObserverErr = document.getElementById(
-                'webpack-dev-server-client-overlay'
-            );
-            if (resizeObserverErr) {
-                resizeObserverErr.setAttribute('style', 'display: none');
-            }
-            if (resizeObserverErrDiv) {
-                resizeObserverErrDiv.setAttribute('style', 'display: none');
-            }
-        }
-    });
-}, []);
+ 
 
   const columns1 = [
     {
@@ -268,17 +250,12 @@ const opciones = fechas
         </Select>
       )}
          <Flex gap="small" wrap="wrap">
-         <Tooltip title="Click para descargar el grafo">
-         <Button type="primary" shape="circle" icon={<DownloadOutlined />} className='download' onClick={descargarImagen} />
-           
-     
-         </Tooltip>
          </Flex>
          </div>              
     <div>
     <div className='carta video-texto2 scrollable-card'> 
     <Tooltip title="Click para ver el grafo">
-    <a href={`https://qsngrafos.vercel.app/comunidades/cruz-roja/grafo_comunidades-${filtroFecha}.html`} target="_blank">
+    <a href={`https://qsngrafos.vercel.app/comunidades//grafo_comunidades-${filtroFecha}.html`} target="_blank">
     <div className='video-explicativo cartaGrafo'>
       <img src={imagen} className='imagen-grafo' />
     </div>
